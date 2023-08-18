@@ -1,0 +1,11 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "python.terminal.activateEnvInCurrentTerminal": true,
+    "python.defaultInterpreterPath": "C:/Users/USER/.virtualenvs/client-UN0FrJha/Scripts/python.exe"
+  }
+}
