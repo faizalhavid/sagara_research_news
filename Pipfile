@@ -10,6 +10,7 @@ pillow = "*"
 factory-boy = "*"
 djangorestframework = "*"
 drf-yasg = "*"
+pypdf2 = "*"
 
 [dev-packages]
 
