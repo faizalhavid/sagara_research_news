@@ -1,3 +1,8 @@
-from django.shortcuts import render
+from rest_framework.generics import GenericAPIView
+from rest_framework.response import Response
+from .serializers import UsersSerializers
 
-# Create your views here.
+class UserAPIView(GenericAPIView):
+    def post(self, request):
+        serializer_class = UsersSerializers(data=request.data)
+        return Response({'message': 'Got some data!'})

@@ -78,17 +78,19 @@ class WhitePapers(models.Model, FileValidationMixin):
             self.slug = slugify(self.title)
         super().save()
 
-    def save(self, *args, **kwargs):
-        if self.pk is None:  # If the instance is being created
+    
+    def clean(self):
+        if self.pk is None:
             if self.status == 'Published':
                 self.published_at = timezone.now()
         if not self.slug:  
             self.slug = slugify(self.title)
-        super().save(*args, **kwargs)
-    
-    def clean(self):
         self.file = self.validate_file(self.file)
         self.image = self.validate_image(self.image)
+        
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        super().save(*args, **kwargs)
         
     def __str__(self):
         return self.title
