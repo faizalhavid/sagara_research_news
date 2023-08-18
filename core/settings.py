@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-n14x!x@f1e9_+i5py#cm@_+(izubv5p$38#hx&j_277q!=9+cm
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+HOST_NAME = 'http://localhost:8000'
 
 # Application definition
 
@@ -131,5 +131,14 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-MEDIA_URL = '/media/'
+MEDIA_URL = HOST_NAME + '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+    ]
+}

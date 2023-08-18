@@ -7,21 +7,9 @@ from core.utils import clean_filename
 
 
 
-class WhitePaperSerializers(serializers.ModelSerializer):
+class WhitePaperListSerializers(serializers.ModelSerializer):
     class Meta :
         model = WhitePapers
-        fields = [
-            'title',
-            'description',
-            'detail',
-            'about',
-            'status',
-            'published_at',
-            'count_of_downloads',
-            'topic',
-            'author',
-            'image',
-            'file'
-        ]
+        fields = ['title', 'description', 'published_at', 'image']
 
    

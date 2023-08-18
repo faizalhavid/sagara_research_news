@@ -22,7 +22,7 @@ schema_view = get_schema_view(
 )
 
 router = DefaultRouter()
-router.register('upcoming-whitepaper', UpcomingWhitePaper ,  basename="upcoming-whitepaper")
+router.register(r'upcoming-whitepaper', UpcomingWhitePaper ,  basename="upcoming-whitepaper")
 urlpatterns = router.urls
 
 urlpatterns = [
@@ -31,6 +31,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('whitepapers/', include('whitepapers.urls')),
     path('media/<str:folder>/<str:subfolder>/<str:file_name>/', serve_uploaded_file, name='serve_uploaded_file'),   
-    
+  
 ]
 urlpatterns += router.urls
