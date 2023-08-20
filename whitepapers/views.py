@@ -1,10 +1,9 @@
 
 from django.shortcuts import render
 from rest_framework import viewsets
-from .serializers import WhitePaperListSerializers
+from .serializers import WhitePaperListSerializers, WhitePaperDetailSerializers
 from .models import WhitePapers, Topic
 from django.shortcuts import get_object_or_404
-from django.shortcuts import render
 import os
 from django.http import FileResponse
 from django.conf import settings
@@ -22,13 +21,12 @@ class WhitePapersList(viewsets.ViewSet):
         serializer = WhitePaperListSerializers(queryset, many=True)
         return Response(serializer.data)
     
-    def retrieve(self, request, pk=None):
+    def retrieve(self, request, slug=None):
         permission_classes = (IsAuthenticated)
-        item = str(self.kwargs.get('pk').lower())
-        user = get_object_or_404(WhitePapers, slug__iexact=item)
-        serializer = WhitePaperSerializers(user)
+        item = str(self.kwargs.get('slug').lower())
+        whitepaper = get_object_or_404(WhitePapers, slug__iexact=item)
+        serializer = WhitePaperDetailSerializers(whitepaper)
         return Response(serializer.data)
-    
 
     
     # def get_object(self, queryset=None, **kwargs):
@@ -43,14 +41,14 @@ class UpcomingWhitePaper(viewsets.ViewSet):
 
     def list(self, request):
         queryset = WhitePapers.objects.filter(published_at__lte=timezone.now()).order_by('-published_at')[:2]
-        serializer = WhitePaperSerializers(queryset, many=True)
+        serializer = WhitePaperListSerializers(queryset, many=True)
         return Response(serializer.data)
     
-    def retrieve(self, request, pk=None):
+    def retrieve(self, request, slug=None):
         permission_classes = IsAuthenticated
-        item = str(self.kwargs.get('pk').lower())
-        user = get_object_or_404(WhitePapers, slug__iexact=item)
-        serializer = WhitePaperSerializers(user)
+        item = str(self.kwargs.get('slug'))
+        upwhitepapers = get_object_or_404(WhitePapers, slug__iexact=item)
+        serializer = WhitePaperDetailSerializers(upwhitepapers)
         return Response(serializer.data)
 
 @api_view(['GET'])

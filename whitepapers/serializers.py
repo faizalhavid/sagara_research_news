@@ -10,6 +10,10 @@ from core.utils import clean_filename
 class WhitePaperListSerializers(serializers.ModelSerializer):
     class Meta :
         model = WhitePapers
-        fields = ['title', 'description', 'published_at', 'image']
+        fields = ['title', 'description', 'published_at', 'image', 'slug']
 
-   
+class WhitePaperDetailSerializers(serializers.ModelSerializer):
+    class Meta :
+        model = WhitePapers
+        fields = '__all__'
+

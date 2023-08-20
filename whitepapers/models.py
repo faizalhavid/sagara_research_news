@@ -14,10 +14,6 @@ class Topic(models.Model):
     def __str__(self):
         return self.title
     
-    
-
-
-
 class WhitePapers(models.Model):
     class WhitePaperObject(models.Manager):
         def get_queryset(self):
