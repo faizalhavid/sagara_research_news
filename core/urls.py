@@ -8,6 +8,7 @@ from drf_yasg import openapi
 from whitepapers.views import WhitePapersList, UpcomingWhitePaper, serve_uploaded_file
 from users.views import UserDownload
 from rest_framework.routers import DefaultRouter
+from users.views import UserDownload
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -28,16 +29,15 @@ urlpatterns = [
     path('', schema_view.with_ui('swagger', cache_timeout=0),
          name='schema-swagger-ui'),
     path('admin/', admin.site.urls),
-    path('whitepaper/',
+    path('whitepapers/',
          WhitePapersList.as_view({'get': 'list'}), name='whitepapers-list'),
-    path('whitepaper/<slug>/',
+    path('whitepapers/<str:slug>/',
          WhitePapersList.as_view({'get': 'retrieve'}), name='whitepapers-detail'),
     path('media/<str:folder>/<str:subfolder>/<str:file_name>/',
          serve_uploaded_file, name='serve_uploaded_file'),
     path('upcoming-whitepaper/', UpcomingWhitePaper.as_view({'get': 'list'})),
-    path('upcoming-whitepaper/<str:slug>/',
-         UpcomingWhitePaper.as_view({'get': 'retrieve'})),
-    path('users/', UserDownload.as_view()),
+    path('user-download/<int:whitepapers_id>/', UserDownload.as_view({'post': 'user_download'}), name='user-download'),
+  
 
 
 ]

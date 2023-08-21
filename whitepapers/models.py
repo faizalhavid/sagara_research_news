@@ -5,6 +5,7 @@ from core.utils import clean_filename
 import os, uuid , re
 from django.core.validators import FileExtensionValidator , MaxValueValidator
 from core.utils import validate_file
+from users.models import Users
 
 
 
@@ -60,3 +61,9 @@ class WhitePapers(models.Model):
         
     def __str__(self):
         return self.title
+
+class WhitePapersDownload(models.Model):
+    user = models.ForeignKey(Users, on_delete=models.CASCADE)
+    whitepaper = models.ForeignKey(WhitePapers, on_delete=models.CASCADE)
+    download_date = models.DateTimeField(auto_now_add=True)
+    
