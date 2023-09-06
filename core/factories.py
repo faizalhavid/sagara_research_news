@@ -1,6 +1,6 @@
 import factory
 from whitepapers.models import WhitePapers, Topic
-from users.models import Users, Country
+from users.models import UserDownload, Country
 from django.utils import timezone
 from django.template.defaultfilters import slugify
 
@@ -43,7 +43,7 @@ class CountryF(factory.django.DjangoModelFactory):
 
 class UsersF(factory.django.DjangoModelFactory):
     class Meta:
-        model = Users
+        model = UserDownload
     name = factory.Faker('name')
     company = factory.Faker('company')
     position = factory.Faker('job')

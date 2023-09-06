@@ -36,12 +36,6 @@ urlpatterns = [
     path('media/<str:folder>/<str:subfolder>/<str:file_name>/',
          serve_uploaded_file, name='serve_uploaded_file'),
     path('upcoming-whitepaper/', UpcomingWhitePaper.as_view({'get': 'list'})),
-    path('user-download/<int:whitepapers_id>/', UserDownload.as_view({'post': 'user_download'}), name='user-download'),
-  
-
-
+    path('user-download/<str:slug>/', UserDownload.as_view(), name='user-download'),  
 ]
-# router = DefaultRouter()
-# router.register(r'upcoming-whitepaper', UpcomingWhitePaper ,  basename="upcoming-whitepaper")
-# urlpatterns = router.urls
-# urlpatterns += router.urls
+

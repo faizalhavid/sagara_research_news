@@ -11,6 +11,7 @@ factory-boy = "*"
 djangorestframework = "*"
 drf-yasg = "*"
 pypdf2 = "*"
+python-decouple = "*"
 
 [dev-packages]
 
