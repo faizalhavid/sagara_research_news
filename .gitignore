@@ -9,6 +9,10 @@ env/
 # Media files
 media/
 
+.gitignore
+
+.vscode/
+
 #env files
 .env
 
