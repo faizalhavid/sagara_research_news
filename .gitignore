@@ -3,8 +3,6 @@ venv/
 .venv/
 env/
 
-# Database
-# db.sqlite3
 
 # Media files
 media/
